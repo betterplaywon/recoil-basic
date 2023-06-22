@@ -12,3 +12,14 @@ export const QuantitySelector = selector({
     return CurrentItem.length.toLocaleString();
   },
 });
+
+export const TotalPriceSelector = selector({
+  key: "TotalPriceSelector",
+  get: ({ get }) => {
+    const CurrentItem = get(CartItemAtom);
+    return CurrentItem.reduce(
+      (acc, curr: any) => acc + curr.price,
+      0
+    ).toLocaleString();
+  },
+});
