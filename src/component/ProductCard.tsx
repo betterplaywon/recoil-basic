@@ -13,23 +13,20 @@ const ProductCard = ({ item }) => {
   const [cartItem, setCartItem] = useRecoilState(CartItemAtom);
 
   // 이미 장바구니에 들어있는지 확인
-  const isAlreadyInCart = cartItem?.filter((e: Items) => {
-    e.id === id;
-  });
+  // 여기서 e가 의미하는 것은 상품의 data, 즉 item을 의미힌다.
+  const isAlreadyInCart = cartItem?.filter((e: Items) => e.id === id).length;
 
   /**
    * 장바구니에 있는지 확인후, 없을때만 아톰에 추가
    */
   const AddToCart = () => {
-    console.log(1232112123);
+    console.log("click test");
     if (!isAlreadyInCart) {
-      setCartItem((prev): any => {
-        [...prev, item];
-      });
+      setCartItem((prev): any => [...prev, item]);
     }
   };
 
-  console.log(isAlreadyInCart);
+  console.log(cartItem);
   return (
     <Wrapper>
       <Image
